@@ -1,11 +1,6 @@
-/* src/styles.css */
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 .navbar {
     background-color: black;
     font-family: 'Staatliches', cursive;
-}
-
-.navbar .navbar-brand{
-    margin-left:10% !important;
 }

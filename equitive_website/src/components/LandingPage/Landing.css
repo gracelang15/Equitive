@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.main {
+    min-height: 93vh;
+    display: flex;
+    align-items: center;
+    background-color: #F5F5F5;
+}
+
+.title{
+    font-size: 85px;
+    font-family: 'Staatliches', cursive;
+}
+
+.subtitle .description{
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+}
+
+img{
+    border:0;
+}
+
+.btn-custom{
+    font-family: 'Staatliches', cursive;
+}
+
+.features{
+    min-height: 93vh;
+    display: flex;
+    align-items: center;
+    background-color: #C4C4C4;
+}
+
+.feature{
+    font-family: 'Staatliches', cursive;
+    font-size: 35px;
+}

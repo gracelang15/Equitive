@@ -1,10 +1,11 @@
 import React from 'react'
-import { Navbar, Nav, Button, ButtonGroup, ButtonToolbar} from 'react-bootstrap'
-import "../styles.css";
+import { Navbar, Nav, Button, ButtonGroup, ButtonToolbar, Container} from 'react-bootstrap'
+import "./navbar.css";
 
 export default function NavigationBar() {
   return (
 <Navbar className = "navbar-dark" expand="lg">
+  <Container>
     <Navbar.Brand href="/">Equitive</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
@@ -21,6 +22,7 @@ export default function NavigationBar() {
           </ButtonGroup>
         </ButtonToolbar>
     </Navbar.Collapse>
+    </Container>
 </Navbar>
   )
 }
