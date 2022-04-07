@@ -17,9 +17,9 @@ import Standards from './Standards';
 
 function App() {
   return ( 
-    <React.Fragment>
+    <>
       <NavBar></NavBar>
-        <div>
+        <Container>
           <BrowserRouter>
             <AuthProvider>
               <Routes>
@@ -40,8 +40,8 @@ function App() {
               </Routes>
             </AuthProvider>
           </BrowserRouter>
-        </div>
-    </React.Fragment>
+        </Container>
+    </>
   );
 }
 
