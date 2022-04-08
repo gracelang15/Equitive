@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Modules() {
   return (
-    <div>Modules</div>
+    <h2 className="text-center mt-3">Modules</h2>
   )
 }

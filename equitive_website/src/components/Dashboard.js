@@ -23,13 +23,13 @@ export default function Dashboard() {
     <>
         <Card>
             <Card.Body>
-                <h2 className="text-center mb-4">Dashboard</h2>
+                <h2 className="text-center mb-4">My DE&amp;I toolkit</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
-                <strong>Logged In user: </strong> {currentUser.email}
+                <strong>Email: </strong> {currentUser.email}
                 <div></div>
-                <Link to="/modules">My Modules</Link>
+                <Link to="/modules">Modules</Link>
                 <div></div>
-                <Link to="/standards">Company Standards</Link>
+                <Link to="/standards">Resources</Link>
             </Card.Body>
         </Card>
         <div className = "w-100 text-center mt-2">
