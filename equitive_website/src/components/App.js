@@ -35,8 +35,20 @@ function App() {
                 <Route exact path="/" element={<Landing/>}/>
                 <Route path="/contact" element={<Contact/>}/>
                 <Route path="/profiledetails" element={<ProfileDetails/>}/>
-                <Route path="/modules" element={<Modules/>}/>
-                <Route path="/standards" element={<Standards/>}/>
+                <Route path="/modules" 
+                element={
+                  <PrivateRoute>
+                    <Modules/>
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route path="/standards" 
+                element={
+                  <PrivateRoute>
+                    <Standards/>
+                  </PrivateRoute>
+                }
+              ></Route>
               </Routes>
             </AuthProvider>
           </BrowserRouter>
