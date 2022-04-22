@@ -14,7 +14,8 @@ const app = firebase.initializeApp({
 });
 
 // Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
+
 
 export const auth = app.auth();
 export default app;
+export const db = getFirestore(app);
