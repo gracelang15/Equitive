@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, Button, Alert } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from "../contexts/AuthContext"
@@ -12,22 +12,27 @@ export default function Dashboard() {
     const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
     const docRef = doc(db, "users", firebase.auth().currentUser.email);
+    const [user, setUser] = useState([]);
+    const [loader, setLoader] = useState(true)
+
+
+
     async function loadData() {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            return docSnap
+            return docSnap.data()
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
         }
     }
 
-    const docData = loadData()
-    docData.then((value) => {
-        console.log(value)
+   loadData().then((value) => {
+        setUser(value)
+        setLoader(false)
     })
-    // console.log(docData)
+
 
     async function handleLogout() {
         setError('')
@@ -40,14 +45,18 @@ export default function Dashboard() {
         }
     }
 
+    if (loader) {
+        return <h1>Loading...</h1>
+    }
+
     return (
         <>
             <Card>
                 <Card.Body>
-                    <h2 className="text-center mb-4">My DE&amp;I toolkit</h2>
+                    <h2 className="text-center mb-4">{user.first}'s DE&amp;I toolkit</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <strong>Email: </strong> {currentUser.email}
-                    <strong>department: </strong> {docData}
+                    <strong>department: </strong> {user.department}
                     <div></div>
                     <Link to="/modules">Modules</Link>
                     <div></div>
