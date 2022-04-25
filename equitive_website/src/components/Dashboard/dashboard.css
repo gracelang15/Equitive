@@ -1,0 +1,20 @@
+.main-div{
+    background-color: #FAC711;
+}
+
+.card{
+    margin-right: 20px;
+    border-radius: 25px !important;
+}
+
+.card-header.card-title{
+    background-color: #f7e6a8;
+    border-radius: 10px !important;
+    font-family: 'Staatliches', cursive;
+}
+
+img { border-style: none !important; }
+
+.circle{
+    text-align: center;
+}
