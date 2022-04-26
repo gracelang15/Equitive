@@ -12,3 +12,20 @@ h1{
 .label{
     font-family: 'Inter', sans-serif;
 }
+
+.form-label{
+    font-family: 'Inter', sans-serif;
+}
+
+.create-profile{
+    font-size: 70px;
+}
+
+.form-check{
+    font-size: 20px;
+}
+
+.btn.btn-custom.btn-lg{
+    background-color: #FAC711;
+    color: black;
+  }
