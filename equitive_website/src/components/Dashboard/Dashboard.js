@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Button, Alert, Col, Row, Container, CardGroup, ListGroup } from 'react-bootstrap'
+import { Card, Button, Row, Container, CardGroup, ListGroup } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from "../../contexts/AuthContext"
 import { db } from "../../firebase"

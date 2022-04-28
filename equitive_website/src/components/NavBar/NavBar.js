@@ -1,28 +1,61 @@
-import React from 'react'
-import { Navbar, Nav, Button, ButtonGroup, ButtonToolbar, Container} from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
+import { Navbar, Nav, Button, ButtonGroup, ButtonToolbar, Container } from 'react-bootstrap'
 import "./navbar.css";
+import firebase from "firebase/compat/app";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useAuth } from "../../contexts/AuthContext"
+import { useNavigate } from 'react-router-dom'
 
 export default function NavigationBar() {
+  const [error, setError] = useState("");
+  const { logout } = useAuth() || {};
+  const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useState(false)
+
+  useEffect(() => {
+    const auth = getAuth();
+  
+    const listener = onAuthStateChanged(auth, async (user) => {
+      setLoggedIn(!!user);
+    });
+  
+    return () => {
+      listener();
+    };
+  }, []);
+
+  /*async function handleLogout() {
+    setError('')
+    try {
+      await logout()
+      navigate('/login')
+    } catch {
+      setError('Failed to log out')
+    }
+  }*/
+
   return (
-<Navbar className = "navbar-dark" expand="lg">
-  <Container>
-    <Navbar.Brand href="/">Equitive</Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ml-auto">
-        <Nav.Link href="/dashboard">Home</Nav.Link>
-        <Nav.Link href="/contact">Contact</Nav.Link>
-      </Nav>
-      <ButtonToolbar aria-label="Toolbar with button groups" className='ms-auto'>
-          <ButtonGroup className="me-2">
-          <Button variant="light" href="/login">LOG IN</Button>
-          </ButtonGroup>
-          <ButtonGroup className="me-2">
-          <Button variant="light" href="/signup">SIGN UP</Button>
-          </ButtonGroup>
-        </ButtonToolbar>
-    </Navbar.Collapse>
-    </Container>
-</Navbar>
+    <Navbar className="navbar-dark" expand="lg">
+      <Container>
+        <Navbar.Brand href="/">Equitive</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            <Nav.Link href="/dashboard">Home</Nav.Link>
+            <Nav.Link href="/contact">Contact</Nav.Link>
+          </Nav>
+          {!loggedIn ?
+            <ButtonToolbar aria-label="Toolbar with button groups" className='ms-auto'>
+              <ButtonGroup className="me-2">
+                <Button variant="light" href="/login">LOG IN</Button>
+              </ButtonGroup>
+              <ButtonGroup className="me-2">
+                <Button variant="light" href="/signup">SIGN UP</Button>
+              </ButtonGroup>
+            </ButtonToolbar> : null
+          }
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
