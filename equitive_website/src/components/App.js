@@ -3,7 +3,7 @@ import '../App.css';
 import Signup from './Signup';
 import { Container } from 'react-bootstrap'
 import { AuthProvider } from "../contexts/AuthContext"
-import { BrowserRouter as BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter as BrowserRouter, Routes, Route } from 'react-router-dom'
 import Dashboard from './Dashboard/Dashboard';
 import Login from './Login'
 import Landing from './LandingPage/Landing';
@@ -17,42 +17,42 @@ import Standards from './Standards';
 import Footer from './Footer';
 
 function App() {
-  return ( 
+  return (
     <>
-      <NavBar></NavBar>
-          <BrowserRouter>
-            <AuthProvider>
-              <Routes>
-                <Route path="/dashboard"
-                element={
-                  <PrivateRoute>
-                    <Dashboard />
-                  </PrivateRoute>
-                }
-              ></Route>
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
-                <Route exact path="/" element={<Landing/>}/>
-                <Route path="/contact" element={<Contact/>}/>
-                <Route path="/profiledetails" element={<ProfileDetails/>}/>
-                <Route path="/modules" 
-                element={
-                  <PrivateRoute>
-                    <Modules/>
-                  </PrivateRoute>
-                }
-              ></Route>
-              <Route path="/standards" 
-                element={
-                  <PrivateRoute>
-                    <Standards/>
-                  </PrivateRoute>
-                }
-              ></Route>
-              </Routes>
-            </AuthProvider>
-          </BrowserRouter>
-        <Footer></Footer>
+      <BrowserRouter>
+        <NavBar></NavBar>
+        <AuthProvider>
+          <Routes>
+            <Route path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route exact path="/" element={<Landing />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/profiledetails" element={<ProfileDetails />} />
+            <Route path="/modules"
+              element={
+                <PrivateRoute>
+                  <Modules />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/standards"
+              element={
+                <PrivateRoute>
+                  <Standards />
+                </PrivateRoute>
+              }
+            ></Route>
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
+      <Footer></Footer>
     </>
   );
 }

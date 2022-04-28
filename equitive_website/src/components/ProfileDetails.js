@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react'
 import { Container, Button, Form } from 'react-bootstrap'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { setDoc, collection, doc } from "firebase/firestore";
 import { db } from "../firebase"
 import firebase from "firebase/compat/app";
+
 
 export default function ProfileDetails() {
   const firstNameRef = useRef()
@@ -15,6 +16,7 @@ export default function ProfileDetails() {
   const [resumes, setResumes] = useState(false)
   const [interviews, setInterviews] = useState(false)
   const [hiringDecision, setHiringDecisions] = useState(false)
+  const navigate = useNavigate()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -58,14 +60,11 @@ export default function ProfileDetails() {
       const docRef2 = await setDoc(doc(collection(db, "modules"), firebase.auth().currentUser.email), {
         obj
       });
-
-
-
       console.log("Document written with email: ", firebase.auth().currentUser.email);
+      window.location = "/dashboard"
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-
   }
 
   return (
@@ -116,7 +115,7 @@ export default function ProfileDetails() {
           onChange={(e) => setHiringDecisions(e.target.checked)}
         />
         <div className="d-grid gap-2">
-          <Button className="mt-5" variant="custom" href="/dashboard" size="lg" type="submit">
+          <Button className="mt-5" variant="custom" size="lg"  type="submit">
             Submit
           </Button>
         </div>
