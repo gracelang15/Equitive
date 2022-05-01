@@ -5,6 +5,7 @@ import firebase from "firebase/compat/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useAuth } from "../../contexts/AuthContext"
 import { useNavigate } from 'react-router-dom'
+import { auth } from "../../firebase"
 
 export default function NavigationBar() {
   const [error, setError] = useState("");
@@ -14,25 +15,26 @@ export default function NavigationBar() {
 
   useEffect(() => {
     const auth = getAuth();
-  
+
     const listener = onAuthStateChanged(auth, async (user) => {
       setLoggedIn(!!user);
     });
-  
+
     return () => {
       listener();
     };
   }, []);
 
-  /*async function handleLogout() {
+  async function handleLogout(e) {
     setError('')
     try {
-      await logout()
+      await auth.signOut()
       navigate('/login')
     } catch {
       setError('Failed to log out')
+      console.log(e)
     }
-  }*/
+  }
 
   return (
     <Navbar className="navbar-dark" expand="lg">
@@ -52,7 +54,12 @@ export default function NavigationBar() {
               <ButtonGroup className="me-2">
                 <Button variant="light" href="/signup">SIGN UP</Button>
               </ButtonGroup>
-            </ButtonToolbar> : null
+            </ButtonToolbar> :
+            <ButtonToolbar aria-label="Toolbar with button groups" className='ms-auto'>
+              <ButtonGroup className="me-2">
+                <Button variant="light" onClick={handleLogout}>LOG OUT</Button>
+              </ButtonGroup>
+            </ButtonToolbar>
           }
         </Navbar.Collapse>
       </Container>
