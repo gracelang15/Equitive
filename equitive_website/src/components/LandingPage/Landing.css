@@ -18,8 +18,10 @@
     font-size: 20px;
 }
 
-img{
+.img-thumbnail.main-image{
     border:0;
+    background-color: #F5F5F5!important;
+    border-radius: 8px;
 }
 
 .btn-custom{
@@ -37,3 +39,8 @@ img{
     font-family: 'Staatliches', cursive;
     font-size: 35px;
 }
+
+.information{
+    background-color: #FAC711
+}
+
