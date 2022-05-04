@@ -22,7 +22,7 @@ export default function Video() {
   
   let videos = {
     hiringDecision: "https://www.youtube.com/embed/idtqfK67_z8",
-    jobDescription: "https://www.youtube.com/embed/IWspq_1WFaM",
+    jobDescriptions: "https://www.youtube.com/embed/IWspq_1WFaM",
     sourcing: "https://www.youtube.com/embed/gzzQpTSHEQA",
     resumes: "https://www.youtube.com/embed/kvdHqS3ryw0",
     interviews: "https://www.youtube.com/embed/B8CJ6G2KFYM"
