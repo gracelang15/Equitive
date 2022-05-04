@@ -5,6 +5,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import firebase from "firebase/compat/app";
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 // need to npm install react-youtube: https://github.com/tjallingt/react-youtube
 // import YouTube from "react-youtube";
 
@@ -19,6 +20,7 @@ export default function Video() {
   const [loader, setLoader] = useState(true)
   const [progress, setProgress] = useState([]);
   
+  
 
   let videos = {
     hiringDecision: "https://www.youtube.com/embed/idtqfK67_z8",
@@ -32,6 +34,7 @@ export default function Video() {
 
   return (
     <>
+      <Button className="mt-3" variant="none" href="/modules"><AiOutlineArrowLeft/> Back to Modules</Button>
       <h2 className="text-center mt-3">Video</h2>
       <div className="text-center">
         <iframe
@@ -50,7 +53,7 @@ export default function Video() {
             type="submit"
             href="/modules"
           >
-            Continue
+            Continue to Quiz
           </Button>
         </div>
       </div>

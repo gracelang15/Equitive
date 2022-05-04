@@ -12,7 +12,7 @@ import NavBar from './NavBar/NavBar';
 import React from 'react';
 import Contact from './Contact/Contact';
 import ProfileDetails from './ProfileDetails';
-import Modules from './Modules';
+import Modules from './Modules/Modules';
 import Standards from './Standards/Standards';
 import Footer from './Footer';
 import Video from './Video';
