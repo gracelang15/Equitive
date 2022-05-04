@@ -15,6 +15,8 @@ import ProfileDetails from './ProfileDetails';
 import Modules from './Modules';
 import Standards from './Standards/Standards';
 import Footer from './Footer';
+import Video from './Video';
+import Quiz from './Quiz';
 
 function App() {
   return (
@@ -46,6 +48,76 @@ function App() {
               element={
                 <PrivateRoute>
                   <Standards />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/modules/video/hiringDecision"
+              element={
+                <PrivateRoute>
+                  <Video />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/modules/quiz/hiringDecision"
+              element={
+                <PrivateRoute>
+                  <Quiz />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/modules/video/jobDescription"
+              element={
+                <PrivateRoute>
+                  <Video />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/modules/quiz/jobDescription"
+              element={
+                <PrivateRoute>
+                  <Quiz />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/modules/video/sourcing"
+              element={
+                <PrivateRoute>
+                  <Video />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/modules/quiz/sourcing"
+              element={
+                <PrivateRoute>
+                  <Quiz />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/modules/video/resumes"
+              element={
+                <PrivateRoute>
+                  <Video />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/modules/quiz/resumes"
+              element={
+                <PrivateRoute>
+                  <Quiz />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/modules/video/interviews"
+              element={
+                <PrivateRoute>
+                  <Video />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/modules/quiz/interviews"
+              element={
+                <PrivateRoute>
+                  <Quiz />
                 </PrivateRoute>
               }
             ></Route>

@@ -60,17 +60,37 @@ export default function Modules() {
           <Row>
             <CardGroup className="mt-4">
               {roles.map(((x, i) => {
-                return (<Col className="mt-3"><Card><Card.Body >
-                  <Card.Title className="card-header text-center mb-2">{x == "hiringDecision" ? "hiring decision" : x == "jobDescriptions" ? "job descriptions" : x}</Card.Title>
-                  <Card.Text>
-                    <ProgressBar variant="warning" className="mt-5" animated now={100 * progress[i] / 2} />
-                    <h2 className="text-center mt-3">{100 * progress[i] / 2}%</h2>
-                  </Card.Text>
-                </Card.Body>
-                  <div className="text-center">
-                    <Button className="mb-3" size="sm" variant="custom">Continue to {progress[i] == 0 ? "Video" : "Quiz"}</Button>
-                  </div>
-                </Card></Col>)
+                return (
+                  <Col className="mt-3">
+                    <Card>
+                      <Card.Body>
+                        <Card.Title className="card-header text-center mb-2">
+                          {x == "hiringDecision"
+                            ? "hiring decision"
+                            : x == "jobDescriptions"
+                            ? "job descriptions"
+                            : x}
+                        </Card.Title>
+                        <Card.Text>
+                          <ProgressBar
+                            variant="warning"
+                            className="mt-5"
+                            animated
+                            now={(100 * progress[i]) / 2}
+                          />
+                          <h2 className="text-center mt-3">
+                            {(100 * progress[i]) / 2}%
+                          </h2>
+                        </Card.Text>
+                      </Card.Body>
+                      <div className="text-center">
+                        <Button className="mb-3" size="sm" variant="custom" type="submit" href={progress[i] == 0 ? "modules/video/".concat(x) : "modules/quiz/".concat(x)}>
+                          Continue to {progress[i] == 0 ? "Video" : "Quiz"}
+                        </Button>
+                      </div>
+                    </Card>
+                  </Col>
+                );
               }))}
             </CardGroup>
           </Row>
