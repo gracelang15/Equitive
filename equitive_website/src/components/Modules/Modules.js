@@ -72,7 +72,7 @@ export default function Modules() {
                               ? "job descriptions"
                               : x}
                         </Card.Title>
-                        <Card.Text>
+                        <Card.Text className="text-center">
                           <ProgressBar
                             variant="warning"
                             className="mt-5"

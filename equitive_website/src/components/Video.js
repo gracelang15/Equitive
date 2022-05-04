@@ -42,7 +42,7 @@ export default function Video() {
     });
       
       console.log("Document updated with email: ", firebase.auth().currentUser.email);
-      window.location = "/dashboard"
+      window.location = "/modules"
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -69,7 +69,7 @@ export default function Video() {
             type="submit"
             href="/modules"
           >
-            Continue to Quiz
+            Continue
           </Button>
         </div>
       </div>
