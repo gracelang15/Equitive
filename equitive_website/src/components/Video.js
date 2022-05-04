@@ -3,7 +3,7 @@ import { Card, Button, Alert, Container, Row, CardGroup, ProgressBar, Col } from
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 // need to npm install react-youtube: https://github.com/tjallingt/react-youtube
@@ -20,8 +20,6 @@ export default function Video() {
   const [loader, setLoader] = useState(true)
   const [progress, setProgress] = useState([]);
   
-  
-
   let videos = {
     hiringDecision: "https://www.youtube.com/embed/idtqfK67_z8",
     jobDescription: "https://www.youtube.com/embed/IWspq_1WFaM",
@@ -32,6 +30,24 @@ export default function Video() {
 
   const embedVideo = window.location.pathname.split("/").pop()
 
+
+  async function handleClick(e) {
+    e.preventDefault()
+    try {
+
+      const videoRef = doc(db, "modules", firebase.auth().currentUser.email);
+      
+     await updateDoc(videoRef, {
+        [`obj.${embedVideo}.video`]: 1
+    });
+      
+      console.log("Document updated with email: ", firebase.auth().currentUser.email);
+      window.location = "/dashboard"
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
+
   return (
     <>
       <Button className="mt-3" variant="none" href="/modules"><AiOutlineArrowLeft/> Back to Modules</Button>
@@ -40,13 +56,13 @@ export default function Video() {
         <iframe
           src={videos[embedVideo]}
           allow="autoplay; encrypted-media"
-          allowfullscreen
+          allowFullScreen
           title="video"
           height="400px"
           width="600px"
         />
         <div>
-          <Button
+          <Button onClick={handleClick}
             className="mt-5"
             variant="custom"
             size="small"
