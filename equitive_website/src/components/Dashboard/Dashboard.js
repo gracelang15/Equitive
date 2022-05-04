@@ -153,7 +153,7 @@ export default function Dashboard() {
                                         <ListGroup as="ol" numbered variant="flush">
                                             {user.hiringDecision ? <ListGroup.Item as="li">Making Hiring Decisions</ListGroup.Item> : null}
                                             {user.interviews ? <ListGroup.Item as="li">Conducting Interviews</ListGroup.Item> : null}
-                                            {user.jobDescriptions ? <ListGroup.Item as="li">Defining of Writing Job Descriptions</ListGroup.Item> : null}
+                                            {user.jobDescriptions ? <ListGroup.Item as="li">Defining or Writing Job Descriptions</ListGroup.Item> : null}
                                             {user.resumes ? <ListGroup.Item as="li">Collecting and Screening Resumes</ListGroup.Item> : null}
                                             {user.sourcing ? <ListGroup.Item as="li">Seeking or Sourcing Talent</ListGroup.Item> : null}
                                         </ListGroup>
