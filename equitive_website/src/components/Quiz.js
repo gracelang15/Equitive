@@ -24,9 +24,9 @@ export default function Quiz() {
   let quizzes = {
     hiringDecision: "True or False: Sharing interview details in advance increases inclusivity by reducing anxiety for candidates",
     jobDescription: "True or False: Long job descriptions with many details attract diverse candidate pools",
-    sourcing: "True of False: Best practice is to review your prior 3 years of data to see diversity in your hiring pipeline",
+    sourcing: "True or False: Best practice is to review your prior 3 years of data to see diversity in your hiring pipeline",
     resumes: "True or False: Traditional Black names on resumes have the same callback rates as traditional White names",
-    interviews: "True of False: Candidates should all take assessments on a company laptop to level the playing field"
+    interviews: "True or False: Candidates should all take assessments on a company laptop to level the playing field"
   }
 
   const displayQuiz = window.location.pathname.split("/").pop()
