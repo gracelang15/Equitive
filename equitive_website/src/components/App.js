@@ -65,14 +65,14 @@ function App() {
                 </PrivateRoute>
               }
             ></Route>
-            <Route path="/modules/video/jobDescription"
+            <Route path="/modules/video/jobDescriptions"
               element={
                 <PrivateRoute>
                   <Video />
                 </PrivateRoute>
               }
             ></Route>
-            <Route path="/modules/quiz/jobDescription"
+            <Route path="/modules/quiz/jobDescriptions"
               element={
                 <PrivateRoute>
                   <Quiz />
