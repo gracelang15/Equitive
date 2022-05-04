@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Card, Button, Alert, Container, Row, CardGroup, ProgressBar, Col } from "react-bootstrap";
+import { Card, Button, Image, Container, Row, CardGroup, ProgressBar, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import { db } from "../firebase"
+import { useAuth } from "../../contexts/AuthContext";
+import { db } from "../../firebase"
 import { doc, getDoc } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 
@@ -34,7 +34,8 @@ export default function Modules() {
       return value
     }).then((value) => {
       const roles = Object.keys(value.obj)
-      setRoles(roles)
+
+      setRoles(roles.sort())
       console.log(roles)
       const map1 = roles.map(x => value.obj[x].video + value.obj[x].quiz)
       setProgress(map1)
@@ -58,7 +59,7 @@ export default function Modules() {
       <div className="main-div">
         <Container>
           <Row>
-            <CardGroup className="mt-4">
+            <CardGroup className="mt-4 mb-4">
               {roles.map(((x, i) => {
                 return (
                   <Col className="mt-3">
@@ -68,19 +69,20 @@ export default function Modules() {
                           {x == "hiringDecision"
                             ? "hiring decision"
                             : x == "jobDescriptions"
-                            ? "job descriptions"
-                            : x}
+                              ? "job descriptions"
+                              : x}
                         </Card.Title>
                         <Card.Text>
                           <ProgressBar
                             variant="warning"
                             className="mt-5"
-                            animated
                             now={(100 * progress[i]) / 2}
                           />
                           <h2 className="text-center mt-3">
                             {(100 * progress[i]) / 2}%
                           </h2>
+                          <Image width={250} height={250} className="img-thumbnail secondary-image" src={require("./".concat(x.concat(".png")))}
+                            alt={"people"} roundedCircle />
                         </Card.Text>
                       </Card.Body>
                       <div className="text-center">

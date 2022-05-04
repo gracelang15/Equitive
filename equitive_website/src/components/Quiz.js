@@ -43,7 +43,7 @@ export default function Quiz() {
             type="submit"
             href="/modules"
           >
-            Continue
+            Complete Module
           </Button>
         </div>
       </div>
