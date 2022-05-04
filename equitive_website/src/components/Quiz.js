@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Button, Alert, Container, Row, CardGroup, ProgressBar, Col } from "react-bootstrap";
+import { Card, Button, Form, Container, Row, CardGroup, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../firebase";
@@ -18,7 +18,8 @@ export default function Quiz() {
   const [moduleInfo, setModuleInfo] = useState([]);
   const [loader, setLoader] = useState(true)
   const [progress, setProgress] = useState([]);
-  
+  const[disabled, setDisabled] = useState(true)
+
 
   let quizzes = {
     hiringDecision: "True or False: Sharing interview details in advance increases inclusivity by reducing anxiety for candidates",
@@ -35,13 +36,13 @@ export default function Quiz() {
     try {
 
       const quizRef = doc(db, "modules", firebase.auth().currentUser.email);
-      
-     await updateDoc(quizRef, {
+
+      await updateDoc(quizRef, {
         [`obj.${displayQuiz}.quiz`]: 1
-    });
-      
+      });
+
       console.log("Document updated with email: ", firebase.auth().currentUser.email);
-      window.location = "/dashboard"
+      window.location = "/modules"
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -49,21 +50,36 @@ export default function Quiz() {
 
   return (
     <>
-      <h2 className="text-center mt-3">Quiz</h2>
-      <div className="text-center">
-        <p className="text-center mt-3"> {quizzes[displayQuiz]} </p>
-        <div>
-          <Button onClick={handleClick}
-            className="mt-5"
-            variant="custom"
-            size="small"
-            type="submit"
-            href="/modules"
-          >
-            Complete Module
-          </Button>
-        </div>
-      </div>
+      <Card className="mt-5">
+        <Card.Body>
+          <h1 className="text-center mb-4">Quiz</h1>
+          <p className="text-center mb-4">{quizzes[displayQuiz]}</p>
+          <Form>
+            <Form.Group>
+              <Row className="text-center">
+                <Form.Check type="radio" 
+                name="quiz" 
+                onChange={() => setDisabled(false)}/>
+                <p>True</p></Row>
+              <Row className="text-center mt-10">
+                <Form.Check type="radio"  name="quiz" 
+                onChange={() => setDisabled(false)}/>
+                <p>False</p></Row>
+            </Form.Group>
+            <Row className="text-center">
+              <Button onClick={handleClick} disabled={disabled}
+                className="mt-5 button-test"
+                variant="custom"
+                type="submit"
+                href="/modules"
+              >
+                Complete Module
+              </Button></Row>
+            <>
+            </>
+          </Form>
+        </Card.Body>
+      </Card>
     </>
   );
 }
