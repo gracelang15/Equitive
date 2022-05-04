@@ -15,6 +15,10 @@
 
 img { border-style: none !important; }
 
-.circle{
-    text-align: center;
+.container-new{
+    display: grid;
+    grid-template-columns: repeat(3, 180px);
+    grid-gap: 80px;
+    padding: 60px;
+    margin: auto;
 }

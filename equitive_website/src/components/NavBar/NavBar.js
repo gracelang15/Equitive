@@ -11,19 +11,26 @@ export default function NavigationBar() {
   const [error, setError] = useState("");
   const { logout } = useAuth() || {};
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState()
+  const [loader, setLoader] = useState(true)
 
-  useEffect(() => {
+  /*useEffect(() => {
     const auth = getAuth();
 
     const listener = onAuthStateChanged(auth, async (user) => {
       setLoggedIn(!!user);
+      setLoading(false)
     });
 
     return () => {
       listener();
     };
-  }, []);
+  }, []);*/
+
+ onAuthStateChanged(auth, async (user) => {
+    setLoggedIn(!!user);
+    setLoader(false)
+  });
 
   async function handleLogout(e) {
     setError('')
@@ -35,7 +42,6 @@ export default function NavigationBar() {
       console.log(e)
     }
   }
-
   return (
     <Navbar className="navbar-dark" expand="lg">
       <Container>
@@ -46,20 +52,20 @@ export default function NavigationBar() {
             <Nav.Link href="/dashboard">Home</Nav.Link>
             <Nav.Link href="/contact">Contact</Nav.Link>
           </Nav>
-          {!loggedIn ?
-            <ButtonToolbar aria-label="Toolbar with button groups" className='ms-auto'>
-              <ButtonGroup className="me-2">
-                <Button variant="light" href="/login">LOG IN</Button>
-              </ButtonGroup>
-              <ButtonGroup className="me-2">
-                <Button variant="light" href="/signup">SIGN UP</Button>
-              </ButtonGroup>
-            </ButtonToolbar> :
-            <ButtonToolbar aria-label="Toolbar with button groups" className='ms-auto'>
-              <ButtonGroup className="me-2">
-                <Button variant="light" onClick={handleLogout}>LOG OUT</Button>
-              </ButtonGroup>
-            </ButtonToolbar>
+          {loader? null : !loggedIn ?
+              <ButtonToolbar aria-label="Toolbar with button groups" className='ms-auto'>
+                <ButtonGroup className="me-2">
+                  <Button variant="light" href="/login">LOG IN</Button>
+                </ButtonGroup>
+                <ButtonGroup className="me-2">
+                  <Button variant="light" href="/signup">SIGN UP</Button>
+                </ButtonGroup>
+              </ButtonToolbar> :
+              <ButtonToolbar aria-label="Toolbar with button groups" className='ms-auto'>
+                <ButtonGroup className="me-2">
+                  <Button variant="light" onClick={handleLogout}>LOG OUT</Button>
+                </ButtonGroup>
+              </ButtonToolbar>
           }
         </Navbar.Collapse>
       </Container>

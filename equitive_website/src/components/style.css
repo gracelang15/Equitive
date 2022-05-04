@@ -38,3 +38,7 @@ h1{
   .main-div{
     background-color: #FAC711;
 }
+
+.card{
+    margin-left: 20px!important;
+}

@@ -15,7 +15,7 @@ export default function Landing() {
           <Row>
             <Col>
               <div className="intro-text">
-                <h1 className='title'>
+                <h1 className='title mt-5'>
                   HIRE BETTER.
                 </h1>
               </div>
@@ -103,7 +103,7 @@ export default function Landing() {
           <Row>
             <Col className="d-flex align-items-center justify-content-center mt-5">
               <Image width={250} height={250} className="img-thumbnail secondary-image" src={require("./money.png")}
-                alt={"people"} />
+                alt={"people"} roundedCircle/>
             </Col>
             <Col className="d-flex align-items-center">
               <Container>
@@ -118,14 +118,14 @@ export default function Landing() {
               </Container>
             </Col>
             <Col className="d-flex align-items-center justify-content-center">
-              <Image width={250} height={250} className="img-thumbnail secondary-image" src={require("./money.png")}
-                alt={"people"} />
+              <Image width={250} height={250} className="img-thumbnail secondary-image" src={require("./idea.png")}
+                alt={"people"} roundedCircle/>
             </Col>
           </Row>
           <Row className="mb-3">
             <Col className="d-flex align-items-center justify-content-center">
-              <Image width={250} height={250} className="img-thumbnail secondary-image" src={require("./money.png")}
-                alt={"people"} />
+              <Image width={250} height={250} className="img-thumbnail secondary-image" src={require("./group-meeting.png")}
+                alt={"people"} roundedCircle />
             </Col>
             <Col className="d-flex align-items-center">
               <Container>
