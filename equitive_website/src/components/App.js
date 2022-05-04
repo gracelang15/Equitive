@@ -10,10 +10,10 @@ import Landing from './LandingPage/Landing';
 import PrivateRoute from './PrivateRoute';
 import NavBar from './NavBar/NavBar';
 import React from 'react';
-import Contact from './Contact';
+import Contact from './Contact/Contact';
 import ProfileDetails from './ProfileDetails';
 import Modules from './Modules';
-import Standards from './Standards';
+import Standards from './Standards/Standards';
 import Footer from './Footer';
 
 function App() {

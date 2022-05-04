@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 .main {
-    min-height: 93vh;
     display: flex;
     align-items: center;
     background-color: #F5F5F5;
@@ -29,7 +28,7 @@
 }
 
 .features{
-    min-height: 93vh;
+    min-height: 50vh;
     display: flex;
     align-items: center;
     background-color: #C4C4C4;
