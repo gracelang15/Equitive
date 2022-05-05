@@ -3,7 +3,7 @@ import { Card, Button, Alert, Container, Row, CardGroup, ProgressBar, Col } from
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, setDoc, getDoc, collection } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 // need to npm install react-youtube: https://github.com/tjallingt/react-youtube
@@ -19,6 +19,8 @@ export default function Video() {
   const [moduleInfo, setModuleInfo] = useState([]);
   const [loader, setLoader] = useState(true)
   const [progress, setProgress] = useState([]);
+  const [user, setUser] = useState([]);
+  const docRef = doc(db, "users", firebase.auth().currentUser.email);
   
   let videos = {
     hiringDecision: "https://www.youtube.com/embed/idtqfK67_z8",
@@ -31,16 +33,38 @@ export default function Video() {
   const embedVideo = window.location.pathname.split("/").pop()
 
 
+  useEffect(() => {
+    const loadData = async () => {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            return docSnap.data()
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }
+    loadData().then((value) => {
+        setUser(value)
+        setLoader(false)
+        console.log(value)
+    })
+
+}, []);
+
+
   async function handleClick(e) {
     e.preventDefault()
     try {
+      const docRef2 = await setDoc(doc(collection(db, "news")), {
+        message: user.first + " just completed the " + embedVideo + " video!",
+        createdAt: new Date()
+      });
 
       const videoRef = doc(db, "modules", firebase.auth().currentUser.email);
       
      await updateDoc(videoRef, {
         [`obj.${embedVideo}.video`]: 1
     });
-      
       console.log("Document updated with email: ", firebase.auth().currentUser.email);
       window.location = "/modules"
     } catch (e) {

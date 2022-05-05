@@ -3,7 +3,7 @@ import { Card, Button, Form, Container, Row, CardGroup, ToggleButton, ToggleButt
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, setDoc, getDoc, collection } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 // need to npm install react-youtube: https://github.com/tjallingt/react-youtube
 // import YouTube from "react-youtube";
@@ -13,12 +13,14 @@ export default function Quiz() {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
+  const docRef = doc(db, "users", firebase.auth().currentUser.email);
   const docRef2 = doc(db, "modules", firebase.auth().currentUser.email);
   const [roles, setRoles] = useState([])
   const [moduleInfo, setModuleInfo] = useState([]);
   const [loader, setLoader] = useState(true)
   const [progress, setProgress] = useState([]);
   const[disabled, setDisabled] = useState(true)
+  const [user, setUser] = useState([]);
 
 
   let quizzes = {
@@ -31,9 +33,31 @@ export default function Quiz() {
 
   const displayQuiz = window.location.pathname.split("/").pop()
 
+  useEffect(() => {
+    const loadData = async () => {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            return docSnap.data()
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }
+    loadData().then((value) => {
+        setUser(value)
+        setLoader(false)
+        console.log(value)
+    })
+
+}, []);
+
   async function handleClick(e) {
     e.preventDefault()
     try {
+      const docRef2 = await setDoc(doc(collection(db, "news")), {
+        message: user.first + " just completed the " + displayQuiz + " quiz!",
+        createdAt: new Date()
+      });
 
       const quizRef = doc(db, "modules", firebase.auth().currentUser.email);
 

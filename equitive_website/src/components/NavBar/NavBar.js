@@ -14,19 +14,6 @@ export default function NavigationBar() {
   const [loggedIn, setLoggedIn] = useState()
   const [loader, setLoader] = useState(true)
 
-  /*useEffect(() => {
-    const auth = getAuth();
-
-    const listener = onAuthStateChanged(auth, async (user) => {
-      setLoggedIn(!!user);
-      setLoading(false)
-    });
-
-    return () => {
-      listener();
-    };
-  }, []);*/
-
  onAuthStateChanged(auth, async (user) => {
     setLoggedIn(!!user);
     setLoader(false)
@@ -49,11 +36,15 @@ export default function NavigationBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link href="/dashboard">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/contact">Contact</Nav.Link>
+            <Nav.Link href="/product">Product</Nav.Link>
+            {loggedIn ? <Nav.Link href="/dashboard">Dashboard</Nav.Link> : null}
+            {loggedIn ? <Nav.Link href="/modules">Modules</Nav.Link> : null}
+            {loggedIn ? <Nav.Link href="/news">News</Nav.Link> : null}
           </Nav>
           {loader? null : !loggedIn ?
-              <ButtonToolbar aria-label="Toolbar with button groups" className='ms-auto'>
+              <ButtonToolbar aria-label="Toolbar with button groups" >
                 <ButtonGroup className="me-2">
                   <Button variant="light" href="/login">LOG IN</Button>
                 </ButtonGroup>

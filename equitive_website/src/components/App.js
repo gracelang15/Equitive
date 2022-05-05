@@ -17,6 +17,8 @@ import Standards from './Standards/Standards';
 import Footer from './Footer';
 import Video from './Video';
 import Quiz from './Quiz';
+import News from './News';
+import Product from './Product/Product';
 
 function App() {
   return (
@@ -36,11 +38,19 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route exact path="/" element={<Landing />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/product" element={<Product />} />
             <Route path="/profiledetails" element={<ProfileDetails />} />
             <Route path="/modules"
               element={
                 <PrivateRoute>
                   <Modules />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route path="/news"
+              element={
+                <PrivateRoute>
+                  <News />
                 </PrivateRoute>
               }
             ></Route>
