@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "equitive-demo",
     "public": "build",
     "ignore": [
       "firebase.json",
